@@ -1,5 +1,5 @@
 use std::io::prelude::*;
-use std::net::{TcpListener, TcpStream};
+use std::net::{Shutdown, TcpListener, TcpStream};
 use std::{fs, thread};
 
 fn main() {
@@ -32,4 +32,5 @@ fn handle_connection(mut stream: TcpStream) {
 
     stream.write(response.as_bytes()).unwrap();
     stream.flush().unwrap();
+    stream.shutdown(Shutdown::Both).unwrap()
 }
